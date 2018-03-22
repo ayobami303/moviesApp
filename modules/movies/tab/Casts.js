@@ -1,0 +1,35 @@
+import React, { Component } from 'react'
+import PropTypes from 'prop-types'
+import { Text, View, Image } from 'react-native'
+
+import styles from './styles/Casts'
+import {TMDB_IMG_URL} from '../../../constants/api'
+
+
+const Casts = ({ info, getTabHeight}) =>{
+	let computedHeight = (80 + 15) * info.casts.cast.length;
+	computedHeight += 60;
+	// alert(info.casts.cast.length)
+	return (
+		<View style={styles.container} onLayout={getTabHeight.bind(this, 'casts', computedHeight)} >
+			{
+				info.casts.cast.map(item=>(
+					<View key={item.cast_id} style= {styles.castContainer}>
+						<Image source={{uri: `${TMDB_IMG_URL}/w185/${item.profile_path}`}} style = {styles.castImage}/>
+						<View style={styles.characterContainer}>
+							<Text style = {styles.characterName} >{item.name}</Text>
+							<Text style = {styles.asCharacter} >{item.character && `as ${item.character}`}</Text>
+						</View>
+					</View>
+				))
+			}
+		</View>
+	)
+}
+
+Casts.propTypes = {
+	info:PropTypes.object.isRequired,
+	getTabHeight: PropTypes.func.isRequired
+}
+
+export default Casts;
