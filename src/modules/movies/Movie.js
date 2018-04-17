@@ -227,6 +227,7 @@ Movie.navigatorStyle ={
 	navBarTranslucent: true,
 	statusBarHidden: true,
 	navBarTextColor: 'white',
+	topBarElevationShadowEnabled: false,
 	navBarButtonColor: 'white'
 }
 
